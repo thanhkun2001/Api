@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 app.use(express.json());
-
+app.use(cors());
 const books = [
   { id: 1, code: "100", title: "Book 1", author: "Author 1", price: 19.99 },
   { id: 2, code: "101", title: "Book 2", author: "Author 2", price: 29.99 },
