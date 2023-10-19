@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-
+const cors = require("cors");
 app.use(express.json());
 
 const books = [
@@ -14,7 +14,14 @@ const books = [
   { id: 7, code: "106", title: "Book 7", author: "Author 7", price: 14.99 },
   { id: 8, code: "107", title: "Book 8", author: "Author 38", price: 14.99 },
 ];
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Cho phép tất cả các nguồn
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 // Lấy danh sách tất cả sách
 app.get("/api/books", (req, res) => {
   res.json(books);
